@@ -1,0 +1,8 @@
+<label>Логин:</label>
+<input type="text" #login class="input-group-text" id="inputGroup-sizing-sm">
+<br/>
+<label>Пароль:</label>
+<input type="password" #password class="input-group-text" id="inputGroup-sizing-sm">
+<label>Email:</label>
+<input type="email" #email class="input-group-text" id="inputGroup-sizing-sm">
+<button (click)="register(login.value, password.value, email.value)" class="btn btn-outline-secondary" style="margin-top: 10px">Зарегистрироваться</button>

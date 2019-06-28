@@ -1,2 +1,29 @@
-<button (click)="add()">Add Point!</button>
-<div [chart]="chart"></div>
+<div *ngIf="authenticated">
+<div *ngIf="userNotFound" class="alert alert-info" role="alert">
+    Для вас не найдено логов.
+</div>
+<div #selectors width="100%">
+<div *ngIf="fileNames" style="margin: 15px; width: 25%; display: inline-block">
+    <label>Файл логов: </label>
+    <select class="form-control" (change)="getVideosUsers(fileNameSelect.value)" #fileNameSelect>
+        <option *ngFor="let fileName of fileNames">{{fileName}}</option>
+    </select>
+</div>
+
+<div *ngIf="videos" style="margin: 15px; width:  25%; display: inline-block">
+    <label>Видео: </label>
+    <select class="form-control" (change)="changeVideo(selectedVideoId.value)" #selectedVideoId>
+        <option *ngFor="let video of videos">{{video}}</option>
+    </select>
+</div>
+
+<div *ngIf="usernames" style="margin: 15px; width: 25%; display: inline-block">
+    <label>Пользователь: </label>
+    <select class="form-control" (change)="changeUser(selectedUserName.value)" #selectedUserName>
+        <option *ngFor="let username of usernames">{{username}}</option>
+    </select>
+</div>
+</div>
+
+<div *ngIf="this.points.length > 0" [chart]="chart"></div>
+</div>

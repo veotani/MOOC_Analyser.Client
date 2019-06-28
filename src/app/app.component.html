@@ -5,18 +5,60 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/">Login<span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/video-analysis">Графики</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/video-analysis">Graphics</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/video-analysis">Upload Log</a>
+        <a class="nav-link" routerLink="/upload-log">Загрузить файл</a>
       </li>
     </ul>
   </div>
+  <button *ngIf="!authenticated" type="button" class="btn btn-light" data-toggle="modal" data-target="#loginModal">
+    Вход
+  </button>
+  <button *ngIf="!authenticated" class="btn btn-light" class="btn btn-light" data-toggle="modal" data-target="#registerModal">
+    Регистрация
+  </button>
+  <button *ngIf="authenticated" class="btn btn-light" (click)="logout()">
+    Выход
+  </button>
 </nav>
 
-<input type="file" (change)="fileChange($event)" placeholder="Upload file">
 <router-outlet></router-outlet>
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="loginModalLabel">Авторизация</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <login></login>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" #closeLoginModal>Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div [ngClass]="modalClass" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="registerModalLabel">Регистрация</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <registration></registration>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal" #closeRegisterModal>Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>

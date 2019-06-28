@@ -1,0 +1,11 @@
+<div *ngIf="canShowContent">
+<div class="input-group mb-3" style="margin: 1%; width: 50%" >
+    <div class="input-group-prepend">
+      <button class="btn btn-outline-secondary" type="button" (click)="sendFile()">Button</button>
+    </div>
+    <div class="custom-file">
+      <input type="file" placeholder="Upload file" class="custom-file-input" id="inputGroupFile03" (change)="fileChange($event)">
+      <label class="custom-file-label" for="inputGroupFile03">{{fileLabelText}}</label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<label>Логин:</label>
+<input type="text" #login class="input-group-text" id="inputGroup-sizing-sm">
+<br/>
+<label>Пароль:</label>
+<input type="password" #password class="input-group-text" id="inputGroup-sizing-sm">
+<button (click)="auth(login.value, password.value)" class="btn btn-outline-secondary" style="margin-top: 10px">Вход</button>

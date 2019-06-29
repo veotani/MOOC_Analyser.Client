@@ -1,4 +1,7 @@
 <div *ngIf="canShowContent">
+  <div *ngIf="uploadStatus.length > 0" class="alert alert-primary" role="alert">
+      {{uploadStatus}}
+  </div>
 <div class="input-group mb-3" style="margin: 1%; width: 50%" >
     <div class="input-group-prepend">
       <button class="btn btn-outline-secondary" type="button" (click)="sendFile()">Button</button>

@@ -14,6 +14,7 @@ export class UploadLogComponent implements OnInit
   fileUpload: FormData
   fileLabelText = "Файл логов"
   canShowContent: boolean = false
+  uploadStatus: string = ""
 
   constructor(
       private http: HttpClient,
@@ -61,14 +62,22 @@ export class UploadLogComponent implements OnInit
         alert("Сначала нужно выбрать файл.")
         return
     }
-    const headers = new HttpHeaders();
+    const headers = new HttpHeaders({
+      authorization: 'Basic ' + sessionStorage.getItem("token")
+    })
     /** In Angular 5, including the header Content-Type can invalidate your request */
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     const options = { headers: headers }
+    this.uploadStatus = "Загрузка..."
     this.http.post(this.apiEndPoint, this.fileUpload, options)
       .subscribe(
-        data => console.log('success'),
+        data => {
+          if (data['status'] == "success")
+            this.uploadStatus = "Загружено!"
+          else
+            this.uploadStatus = data['status']
+        },
         error => console.log(error)
     )
   }
